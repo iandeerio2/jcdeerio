@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Publishing &amp; Deployment Companion | Juess Christian De Erio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            stageBg: '#080B10',
+            stageCard: '#0E141F',
+            stagePanel: '#141D2D',
+            amberSpot: '#F59E0B',
+            cyanBeam: '#22D3EE',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #080B10;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    .stage-wash {
+      background-image:
+        radial-gradient(ellipse 75% 40% at 15% 0%, rgba(245, 158, 11, 0.14), transparent 65%),
+        radial-gradient(ellipse 75% 40% at 85% 5%, rgba(34, 211, 238, 0.13), transparent 65%);
+    }
+
+    pre code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  </style>
+</head>
+<body class="stage-wash min-h-screen antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+  <!-- Toast Banner (replaces browser alert) -->
+  <div id="toast" role="status" aria-live="polite"
+    class="fixed bottom-5 right-5 z-50 hidden max-w-sm rounded-xl border border-amber-400/40 bg-slate-900/95 px-4 py-3 text-sm font-medium text-white shadow-2xl backdrop-blur-md">
+    <div class="flex items-center gap-2.5">
+      <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+      <span id="toastText">Copied to clipboard.</span>
+    </div>
+  </div>
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/90 bg-slate-950/85 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-sm font-extrabold text-slate-950">
+          JC
+        </div>
+        <div>
+          <div class="text-sm font-bold tracking-wide text-white">JUESS CHRISTIAN DE ERIO</div>
+          <div class="text-xs font-medium text-cyan-400">Publishing &amp; Deployment Companion • Davao City</div>
+        </div>
+      </div>
+
+      <nav aria-label="Guide Sections" class="flex flex-wrap items-center gap-1.5 text-xs font-semibold sm:text-sm">
+        <a href="#checklist" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-amber-300">Checklist</a>
+        <a href="#starter-files" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-amber-300">Starter Files</a>
+        <a href="#troubleshooting" class="rounded-lg px-3 py-2 text-slate-300 transition hover:bg-slate-800 hover:text-amber-300">Troubleshooting</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+
+    <!-- Hero Banner -->
+    <section class="mb-12 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-2xl sm:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-300">
+        <span>Portfolio Launch Toolkit</span>
+      </div>
+      <h1 class="mt-4 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
+        Web Publishing &amp; Deployment Companion
+      </h1>
+      <p class="mt-2.5 max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
+        Step-by-step hosting checklists, copy-paste starter files, and deployment fixes for <strong class="text-white">Juess Christian De Erio</strong> — Lighting Director, Lighting Designer, Resolume Operator, and Audio Technician in <strong class="text-amber-300">Davao City, Philippines</strong> (<span class="text-cyan-300">iandeerio2@gmail.com</span> • <span class="text-amber-300">09240318162</span>).
+      </p>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE PUBLISHING CHECKLIST -->
+    <section id="checklist" class="mb-14">
+      <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-400">Step-by-Step Launch</p>
+          <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Interactive Hosting Checklist</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex rounded-xl border border-slate-800 bg-slate-900 p-1">
+            <button type="button" data-host-tab="github" onclick="switchHostTab('github')"
+              class="host-tab rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-slate-950 transition">
+              GitHub Pages
+            </button>
+            <button type="button" data-host-tab="netlify" onclick="switchHostTab('netlify')"
+              class="host-tab rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white">
+              Netlify Drop
+            </button>
+            <button type="button" data-host-tab="cpanel" onclick="switchHostTab('cpanel')"
+              class="host-tab rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white">
+              cPanel / Hosting
+            </button>
+          </div>
+          <button type="button" onclick="resetChecklistProgress()"
+            class="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs font-semibold text-slate-300 transition hover:border-amber-400/50 hover:text-amber-300">
+            Reset Progress
+          </button>
+        </div>
+      </div>
+
+      <!-- Overall Progress Bar -->
+      <div class="mb-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <div class="flex items-center justify-between text-xs font-semibold sm:text-sm">
+          <span class="text-slate-200">Overall Deployment Readiness</span>
+          <span id="progressLabel" class="text-amber-400">0 / 12 completed (0%)</span>
+        </div>
+        <div class="mt-2.5 h-3 w-full overflow-hidden rounded-full bg-slate-800">
+          <div id="progressBar" class="h-full w-0 rounded-full bg-gradient-to-r from-amber-400 to-cyan-400 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Checklist Panels -->
+      <div id="checklistPanels" class="space-y-4">
+        <!-- GitHub Pages -->
+        <div data-host-panel="github" class="host-panel rounded-2xl border border-amber-500/30 bg-slate-900/80 p-6">
+          <h3 class="text-lg font-bold text-amber-300">GitHub Pages Publishing Steps</h3>
+          <p class="mt-1 text-xs text-slate-400 sm:text-sm">Free static hosting directly from a GitHub repository.</p>
+          <div id="list-github" class="mt-4 space-y-3"></div>
+        </div>
+
+        <!-- Netlify Drop -->
+        <div data-host-panel="netlify" class="host-panel hidden rounded-2xl border border-cyan-500/30 bg-slate-900/80 p-6">
+          <h3 class="text-lg font-bold text-cyan-300">Netlify Drop Publishing Steps</h3>
+          <p class="mt-1 text-xs text-slate-400 sm:text-sm">Fast drag-and-drop deployment for your portfolio folder.</p>
+          <div id="list-netlify" class="mt-4 space-y-3"></div>
+        </div>
+
+        <!-- cPanel -->
+        <div data-host-panel="cpanel" class="host-panel hidden rounded-2xl border border-slate-700 bg-slate-900/80 p-6">
+          <h3 class="text-lg font-bold text-white">cPanel / Traditional Web Hosting Steps</h3>
+          <p class="mt-1 text-xs text-slate-400 sm:text-sm">Upload directly into your domain's web root (<code class="text-amber-300">public_html</code>).</p>
+          <div id="list-cpanel" class="mt-4 space-y-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: READY-TO-COPY STARTER FILES -->
+    <section id="starter-files" class="mb-14">
+      <div class="mb-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-cyan-400">Copy &amp; Paste Templates</p>
+        <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Ready-to-Copy Starter Files</h2>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Starter File 1: index.html -->
+        <article class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/85">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 bg-slate-950/70 px-5 py-3.5">
+            <div>
+              <span class="rounded-md bg-amber-500/15 px-2 py-0.5 text-xs font-bold text-amber-300">HTML</span>
+              <span class="ml-2 text-sm font-bold text-white">index.html</span>
+              <span class="ml-2 text-xs text-slate-400">Minimal Portfolio &amp; CV Landing Page</span>
+            </div>
+            <button type="button" onclick="copyCodeBlock('codeIndexHtml', 'index.html')"
+              class="rounded-xl bg-amber-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 transition hover:bg-amber-400">
+              Copy index.html
+            </button>
+          </div>
+          <pre class="max-h-96 overflow-auto p-5 text-xs leading-relaxed text-slate-200"><code id="codeIndexHtml">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;Juess Christian De Erio | Lighting, Resolume &amp; Audio Portfolio&lt;/title&gt;
+  &lt;style&gt;
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #090d14; color: #f8fafc; line-height: 1.55; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; margin-bottom: 18px; }
+    h1 { margin: 0 0 6px; font-size: 28px; color: #ffffff; }
+    .roles { color: #f59e0b; font-weight: bold; font-size: 14px; margin-bottom: 10px; }
+    .meta { color: #22d3ee; font-size: 14px; }
+    h2 { margin: 0 0 10px; font-size: 18px; color: #22d3ee; border-bottom: 1px solid #1f2937; padding-bottom: 6px; }
+    ul { margin: 8px 0 0 18px; padding: 0; }
+    li { margin-bottom: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="wrap"&gt;
+    &lt;header class="card"&gt;
+      &lt;h1&gt;JUESS CHRISTIAN DE ERIO&lt;/h1&gt;
+      &lt;div class="roles"&gt;LIGHTING DIRECTOR &bull; LIGHTING DESIGNER &bull; RESOLUME OPERATOR &bull; AUDIO TECHNICIAN&lt;/div&gt;
+      &lt;div class="meta"&gt;Davao City, Philippines &bull; 09240318162 &bull; iandeerio2@gmail.com&lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;section class="card"&gt;
+      &lt;h2&gt;Technical Skills &amp; Systems&lt;/h2&gt;
+      &lt;div class="grid"&gt;
+        &lt;div&gt;
+          &lt;strong style="color:#f59e0b;"&gt;Lighting Control:&lt;/strong&gt;
+          &lt;ul&gt;
+            &lt;li&gt;MA Lighting grandMA2 &amp;amp; grandMA3&lt;/li&gt;
+            &lt;li&gt;Avolites lighting consoles&lt;/li&gt;
+            &lt;li&gt;Lighting programming, cue management &amp;amp; live busking&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong style="color:#22d3ee;"&gt;Audio Mixing &amp;amp; Systems:&lt;/strong&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Midas M32, Yamaha TF5, Yamaha DM3&lt;/li&gt;
+            &lt;li&gt;Mackie &amp;amp; PreSonus mixing systems&lt;/li&gt;
+            &lt;li&gt;Live audio mixing, full-band setup, signal routing &amp;amp; sound reinforcement&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong style="color:#f59e0b;"&gt;Visual &amp;amp; Event Production:&lt;/strong&gt;
+          &lt;ul&gt;
+            &lt;li&gt;Resolume Arena, LED wall operations &amp;amp; video playback&lt;/li&gt;
+            &lt;li&gt;Live visual cues, stage/concert production &amp;amp; technical coordination&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="card"&gt;
+      &lt;h2&gt;Education&lt;/h2&gt;
+      &lt;p style="margin:0;"&gt;&lt;strong&gt;STI College of Davao&lt;/strong&gt; &mdash; Bachelor of Science in Information Technology (2012&ndash;2013)&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section class="card"&gt;
+      &lt;h2&gt;Professional References&lt;/h2&gt;
+      &lt;div class="grid"&gt;
+        &lt;div&gt;
+          &lt;strong&gt;Bernie Aguilar&lt;/strong&gt;&lt;br /&gt;
+          Training Director - AIFCP | Proprietor - Airpark Audio Pro&lt;br /&gt;
+          Phone: 09479370376
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong&gt;Nicobel Neri&lt;/strong&gt;&lt;br /&gt;
+          Proprietor - Cobe Lights and Sounds&lt;br /&gt;
+          Phone: 09214467280
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </article>
+
+        <!-- Starter File 2: .nojekyll -->
+        <article class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/85">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 bg-slate-950/70 px-5 py-3.5">
+            <div>
+              <span class="rounded-md bg-cyan-500/15 px-2 py-0.5 text-xs font-bold text-cyan-300">CONFIG</span>
+              <span class="ml-2 text-sm font-bold text-white">.nojekyll</span>
+              <span class="ml-2 text-xs text-slate-400">Prevents Jekyll build skipping on GitHub Pages</span>
+            </div>
+            <button type="button" onclick="copyCodeBlock('codeNoJekyll', '.nojekyll')"
+              class="rounded-xl bg-cyan-400 px-3.5 py-1.5 text-xs font-bold text-slate-950 transition hover:bg-cyan-300">
+              Copy .nojekyll
+            </button>
+          </div>
+          <pre class="overflow-x-auto p-5 text-xs leading-relaxed text-slate-200"><code id="codeNoJekyll"># Empty file required in the site root so GitHub Pages serves static assets directly.</code></pre>
+        </article>
+
+        <!-- Starter File 3: robots.txt & sitemap.xml -->
+        <article class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/85">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 bg-slate-950/70 px-5 py-3.5">
+            <div>
+              <span class="rounded-md bg-amber-500/15 px-2 py-0.5 text-xs font-bold text-amber-300">SEO</span>
+              <span class="ml-2 text-sm font-bold text-white">robots.txt &amp; sitemap.xml</span>
+              <span class="ml-2 text-xs text-slate-400">Search engine crawling &amp; sitemap snippet</span>
+            </div>
+            <button type="button" onclick="copyCodeBlock('codeSeoSnippet', 'robots.txt & sitemap.xml')"
+              class="rounded-xl bg-amber-500 px-3.5 py-1.5 text-xs font-bold text-slate-950 transition hover:bg-amber-400">
+              Copy SEO Snippet
+            </button>
+          </div>
+          <pre class="max-h-80 overflow-auto p-5 text-xs leading-relaxed text-slate-200"><code id="codeSeoSnippet"># --- robots.txt ---
+User-agent: *
+Allow: /
+Sitemap: https://YOUR-DOMAIN-OR-GITHUB-USERNAME.github.io/sitemap.xml
+
+# --- sitemap.xml ---
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://YOUR-DOMAIN-OR-GITHUB-USERNAME.github.io/&lt;/loc&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TROUBLESHOOTING GUIDE -->
+    <section id="troubleshooting" class="mb-8">
+      <div class="mb-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-400">Common Deployment Fixes</p>
+        <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Troubleshooting Guide</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <!-- Issue 1 -->
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
+          <div class="inline-block rounded-lg bg-amber-500/15 px-2.5 py-1 text-xs font-bold text-amber-300">Images &amp; Paths</div>
+          <h3 class="mt-3 text-base font-bold text-white">Broken Relative Image Paths</h3>
+          <ul class="mt-3 space-y-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
+            <li>• Verify exact file names and extensions (case-sensitive on Linux/GitHub Pages: <code class="text-cyan-300">stage.jpg</code> vs <code class="text-cyan-300">STAGE.JPG</code>).</li>
+            <li>• Use relative paths like <code class="text-amber-300">./images/mati-2026.jpg</code> instead of local PC paths (<code class="text-slate-400">C:\...</code> or Google Drive viewer links).</li>
+            <li>• Ensure image files are uploaded alongside <code class="text-cyan-300">index.html</code>.</li>
+          </ul>
+        </article>
+
+        <!-- Issue 2 -->
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
+          <div class="inline-block rounded-lg bg-cyan-500/15 px-2.5 py-1 text-xs font-bold text-cyan-300">Security &amp; Links</div>
+          <h3 class="mt-3 text-base font-bold text-white">HTTPS &amp; Mixed Content</h3>
+          <ul class="mt-3 space-y-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
+            <li>• Enable <strong>Enforce HTTPS</strong> in GitHub Pages or SSL/TLS in cPanel/Netlify.</li>
+            <li>• Replace any <code class="text-amber-300">http://</code> script, font, or media URLs with <code class="text-cyan-300">https://</code> to prevent browser blocks.</li>
+          </ul>
+        </article>
+
+        <!-- Issue 3 -->
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/80 p-6">
+          <div class="inline-block rounded-lg bg-amber-500/15 px-2.5 py-1 text-xs font-bold text-amber-300">Updates &amp; CDN</div>
+          <h3 class="mt-3 text-base font-bold text-white">Stale Browser or CDN Caching</h3>
+          <ul class="mt-3 space-y-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
+            <li>• Do a hard refresh (<code class="text-cyan-300">Ctrl+F5</code> or <code class="text-cyan-300">Cmd+Shift+R</code>) after uploading new changes.</li>
+            <li>• Add a query version when updating files (e.g., <code class="text-amber-300">portrait.jpg?v=2</code>) or clear CDN/hosting cache.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-950/90 py-6 text-center text-xs text-slate-400">
+    Juess Christian De Erio • Davao City, Philippines • 09240318162 • iandeerio2@gmail.com
+  </footer>
+
+  <script>
+    const CHECKLIST_STORAGE_KEY = 'juess_publish_checklist_v1';
+
+    const CHECKLIST_ITEMS = {
+      github: [
+        { id: 'gh-1', text: 'Create a public GitHub repository (e.g., juess-portfolio).' },
+        { id: 'gh-2', text: 'Upload index.html, .nojekyll, and your portrait/stage images to the root folder.' },
+        { id: 'gh-3', text: 'Open Settings → Pages, choose Deploy from a branch (main / root), and save.' },
+        { id: 'gh-4', text: 'Wait for the live URL, enable Enforce HTTPS, and test on mobile and desktop.' },
+      ],
+      netlify: [
+        { id: 'nl-1', text: 'Gather index.html, robots.txt, sitemap.xml, and image assets inside one folder.' },
+        { id: 'nl-2', text: 'Drag and drop the folder onto Netlify Drop / your Netlify dashboard.' },
+        { id: 'nl-3', text: 'Confirm HTTPS is active and test your live site link.' },
+        { id: 'nl-4', text: 'Optionally set a custom site name or connect your custom domain.' },
+      ],
+      cpanel: [
+        { id: 'cp-1', text: 'Log in to your web hosting control panel (cPanel) and open File Manager.' },
+        { id: 'cp-2', text: 'Navigate to public_html (or your addon domain root folder).' },
+        { id: 'cp-3', text: 'Upload index.html and image files with matching lowercase filenames.' },
+        { id: 'cp-4', text: 'Verify SSL/HTTPS redirect is active and visit your domain to check layout.' },
+      ],
+    };
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toastText');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 2800);
+    }
+
+    function loadCheckedIds() {
+      try {
+        const raw = localStorage.getItem(CHECKLIST_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return new Set(Array.isArray(parsed) ? parsed : []);
+      } catch (e) {
+        return new Set();
+      }
+    }
+
+    function saveCheckedIds(set) {
+      try {
+        localStorage.setItem(CHECKLIST_STORAGE_KEY, JSON.stringify(Array.from(set)));
+      } catch (e) {}
+    }
+
+    function updateProgressBar() {
+      const checked = loadCheckedIds();
+      const allIds = Object.values(CHECKLIST_ITEMS).flat().map((item) => item.id);
+      const completedCount = allIds.filter((id) => checked.has(id)).length;
+      const totalCount = allIds.length;
+      const pct = totalCount ? Math.round((completedCount / totalCount) * 100) : 0;
+
+      const label = document.getElementById('progressLabel');
+      const bar = document.getElementById('progressBar');
+      if (label) label.textContent = `${completedCount} / ${totalCount} completed (${pct}%)`;
+      if (bar) bar.style.width = `${pct}%`;
+    }
+
+    function toggleChecklistItem(id) {
+      const checked = loadCheckedIds();
+      if (checked.has(id)) {
+        checked.delete(id);
+      } else {
+        checked.add(id);
+      }
+      saveCheckedIds(checked);
+      renderChecklists();
+      updateProgressBar();
+    }
+
+    function resetChecklistProgress() {
+      saveCheckedIds(new Set());
+      renderChecklists();
+      updateProgressBar();
+      showToast('Checklist progress reset.');
+    }
+
+    function renderChecklists() {
+      const checked = loadCheckedIds();
+      Object.entries(CHECKLIST_ITEMS).forEach(([host, items]) => {
+        const container = document.getElementById(`list-${host}`);
+        if (!container) return;
+        container.innerHTML = items.map((item) => {
+          const isDone = checked.has(item.id);
+          return `
+            <label class="flex cursor-pointer items-start gap-3 rounded-xl border ${isDone ? 'border-cyan-400/40 bg-cyan-500/10' : 'border-slate-800 bg-slate-950/65'} p-3.5 transition hover:border-amber-400/50">
+              <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleChecklistItem('${item.id}')"
+                class="mt-0.5 h-4 w-4 rounded border-slate-600 bg-slate-900 text-amber-500 focus:ring-amber-400" />
+              <span class="text-xs leading-relaxed sm:text-sm ${isDone ? 'text-slate-300 line-through' : 'text-slate-100'}">${item.text}</span>
+            </label>
+          `;
+        }).join('');
+      });
+    }
+
+    function switchHostTab(host) {
+      document.querySelectorAll('.host-tab').forEach((btn) => {
+        const active = btn.getAttribute('data-host-tab') === host;
+        btn.classList.toggle('bg-amber-500', active);
+        btn.classList.toggle('text-slate-950', active);
+        btn.classList.toggle('font-bold', active);
+        btn.classList.toggle('text-slate-300', !active);
+        btn.classList.toggle('font-semibold', !active);
+      });
+
+      document.querySelectorAll('.host-panel').forEach((panel) => {
+        const show = panel.getAttribute('data-host-panel') === host;
+        panel.classList.toggle('hidden', !show);
+      });
+    }
+
+    function copyCodeBlock(elementId, fileLabel) {
+      const codeEl = document.getElementById(elementId);
+      if (!codeEl) return;
+      const text = codeEl.textContent || '';
+
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(ok ? `Copied ${fileLabel} to clipboard.` : `Ready to copy ${fileLabel}.`);
+      } catch (err) {
+        showToast(`Could not auto-copy ${fileLabel}.`);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderChecklists();
+      updateProgressBar();
+    });
+  </script>
+</body>
+</html>
